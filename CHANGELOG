@@ -1,0 +1,9 @@
+In Dev
+- TODO
+
+1.0
+- Collects user inputs for role, MVP status, and game stats.
+- Takes game stats and role as input, then generates a list of workout suggestions
+- Includes different workout types: push-ups, squats, planks, lunges, knee-ups, and jumping jacks.
+- Basic input validation and error-handling
+- 50% shitpost, 100% increase to log carrying potential
