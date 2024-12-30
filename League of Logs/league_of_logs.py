@@ -87,6 +87,13 @@ def main():
     """
     Main function to gather user inputs for a League of Legends game and generate a workout plan based on the game stats.
     """
+    # DISCLAIMER BOILERPLATE
+    print("""
+          League of Logs is not endorsed by Riot Games and does not reflect the views or opinions of Riot Games 
+          or anyone officially involved in producing or managing Riot Games properties. Riot Games and all associated 
+          properties are trademarks or registered trademarks of Riot Games, Inc
+          """)
+    
     # GET ROLE
     role_input = input("Role: ").strip().lower()
     if role_input.lower() not in ["adc", "support", "middle", "jungle", "top"]:
