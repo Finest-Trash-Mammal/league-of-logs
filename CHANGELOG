@@ -1,5 +1,18 @@
 In Dev
-- TODO
+- Background Image Functionality
+
+1.1
+- Reorganized into class-based structure
+- Added windowed GUI
+- Dropdown menu for roles
+- Checkbox for MVP status
+- Input boxes for numeric values
+- Large text box for output display
+- Scrollbar
+- Buttons for Generating Workout and Resetting Form
+- Disclaimer label
+- Tooltips
+- Better overall styling
 
 1.0
 - Collects user inputs for role, MVP status, and game stats.
