@@ -1,15 +1,3 @@
 .env
-build/league_of_logs/Analysis-00.toc
-build/league_of_logs/base_library.zip
-build/league_of_logs/EXE-00.toc
-build/league_of_logs/league_of_logs.pkg
-build/league_of_logs/PKG-00.toc
-build/league_of_logs/PYZ-00.pyz
-build/league_of_logs/PYZ-00.toc
-build/league_of_logs/warn-league_of_logs.txt
-build/league_of_logs/xref-league_of_logs.html
-build/league_of_logs/localpycs/pyimod01_archive.pyc
-build/league_of_logs/localpycs/pyimod02_importers.pyc
-build/league_of_logs/localpycs/pyimod03_ctypes.pyc
-build/league_of_logs/localpycs/pyimod04_pywin32.pyc
-build/league_of_logs/localpycs/struct.pyc
+build/league_of_logs/
+node_modules/
