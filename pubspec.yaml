@@ -1,7 +1,6 @@
 name: league_of_logs
 description: "A new Flutter project."
 
-# Prevent accidental publishing to pub.dev.
 publish_to: 'none'
 
 version: 1.0.0+1
@@ -20,6 +19,11 @@ dependencies:
 
   shared_preferences: ^2.1.0
 
+  window_size:
+    git:
+      url: https://github.com/google/flutter-desktop-embedding
+      path: plugins/window_size
+
 dev_dependencies:
   flutter_test:
     sdk: flutter
@@ -29,9 +33,7 @@ dev_dependencies:
 flutter:
   uses-material-design: true
 
-  # Enable generation of localized Strings from arb files.
   generate: true
 
   assets:
-    # Add assets from the images directory to the application.
     - assets/images/
