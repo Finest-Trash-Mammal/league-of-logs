@@ -4,6 +4,7 @@ import '../settings/settings_view.dart';
 import 'package:league_of_logs/src/workout_generator/workout_generator_service.dart';
 import 'package:league_of_logs/src/workout_generator/player_stats.dart';
 import 'package:league_of_logs/src/utils/constants.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class PostMatchStatsForm extends StatefulWidget {
   @override
@@ -31,7 +32,13 @@ class _PostMatchStatsFormState extends State<PostMatchStatsForm> {
 
   String workoutResult = '';
 
-  void _onSubmit() {
+  Future<void> _onSubmit() async {
+    final prefs = await SharedPreferences.getInstance();
+    if (prefs.getBool('saveNameAndRole') ?? false) {
+        await prefs.setString('savedName', _playerNameController.text);
+        await prefs.setString('savedRole', _role);
+    }
+
     final playerStats = PlayerStats(
       name: _playerNameController.text,
       role: _role,
@@ -46,6 +53,20 @@ class _PostMatchStatsFormState extends State<PostMatchStatsForm> {
     );
 
     workoutResult = _workoutService.generateWorkout(playerStats: playerStats);
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    _loadSavedData();
+  }
+
+  Future<void> _loadSavedData() async {
+    final prefs = await SharedPreferences.getInstance();
+    if (prefs.getBool('saveNameAndRole') ?? false) {
+      _playerNameController.text = prefs.getString('savedName') ?? '';
+      _role = prefs.getString('savedRole') ?? '';
+    }
   }
 
   @override
