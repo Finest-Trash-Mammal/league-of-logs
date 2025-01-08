@@ -19,7 +19,7 @@ class WorkoutGeneratorService {
       {'key': 'Deaths', 'exercise': 'lunges for each assist', 'value': playerStats.deaths},
       {'key': 'Assists', 'exercise': 'burpees for each death', 'value': playerStats.assists},
       {'key': 'VisionScore', 'exercise': 'high knees for your vision score', 'value': playerStats.visionScore},
-      {'key': 'CreepScore', 'exercise': 'sit-ups for your CS', 'value': playerStats.creepScore},
+      {'key': 'CreepScore', 'exercise': 'sit-ups for your CS', 'value': (playerStats.creepScore / playerStats.gameDuration).round()},
       {'key': 'KillParticipation', 'exercise': 'jumping jacks for your kill participation', 'value': killParticipation},
     ];
 
