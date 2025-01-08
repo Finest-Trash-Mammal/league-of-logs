@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 
-import 'form/post_match_stats_form.dart';
+import 'workout_generator/workout_generator_form.dart';
 import 'settings/settings_controller.dart';
 import 'settings/settings_view.dart';
 

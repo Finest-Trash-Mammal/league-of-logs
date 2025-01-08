@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 
 import '../settings/settings_view.dart';
+import 'package:league_of_logs/src/workout_generator/workout_generator_service.dart';
+import 'package:league_of_logs/src/workout_generator/player_stats.dart';
+import 'package:league_of_logs/src/utils/constants.dart';
 
 class PostMatchStatsForm extends StatefulWidget {
   @override
@@ -24,6 +27,26 @@ class _PostMatchStatsFormState extends State<PostMatchStatsForm> {
 
   bool _isMVP = false;
 
+  final WorkoutGeneratorService _workoutService = WorkoutGeneratorService();
+
+  String workoutResult = '';
+
+  void _onSubmit() {
+    final playerStats = PlayerStats(
+      name: _playerNameController.text,
+      role: _role,
+      isMVP: _isMVP,
+      kills: int.parse(_killsController.text),
+      deaths: int.parse(_deathsController.text),
+      assists: int.parse(_assistsController.text),
+      teamKills: int.parse(_teamKillsController.text),
+      creepScore: int.parse(_creepScoreController.text),
+      visionScore: int.parse(_visionScoreController.text),
+      gameDuration: int.parse(_gameDurationController.text),
+    );
+    workoutResult = _workoutService.generateWorkout(playerStats: playerStats);
+  }
+
   @override
   void dispose() {
     _playerNameController.dispose();
@@ -37,29 +60,7 @@ class _PostMatchStatsFormState extends State<PostMatchStatsForm> {
     super.dispose();
   }
 
-  void _submitForm() {
-    if (_formKey.currentState!.validate()) {
-      final playerName = _playerNameController.text;
-      final kills = int.parse(_killsController.text);
-      final deaths = int.parse(_deathsController.text);
-      final assists = int.parse(_assistsController.text);
-      final teamKills = int.parse(_teamKillsController.text);
-      final creepScore = int.parse(_creepScoreController.text);
-      final visionScore = int.parse(_visionScoreController.text);
-      final gameDuration = int.parse(_gameDurationController.text);
-
-      print('Player Name: $playerName');
-      print('Kills: $kills');
-      print('Deaths: $deaths');
-      print('Assists: $assists');
-      print('Team Kills: $teamKills');
-      print('Creep Score: $creepScore');
-      print('Vision Score: $visionScore');
-      print('Game Duration: $gameDuration');
-    }
-  }
-
-  @override
+  @override 
   Widget build(BuildContext context) {
     final isDarkMode = Theme.of(context).brightness == Brightness.dark;
     return Scaffold(
@@ -78,8 +79,8 @@ class _PostMatchStatsFormState extends State<PostMatchStatsForm> {
         decoration: BoxDecoration(
           image: DecorationImage(
             image: AssetImage(isDarkMode
-              ? 'assets/images/Rengar_1.jpg'
-              : 'assets/images/Thresh_14.jpg'),
+              ? darkThemeBackgroundImage
+              : lightThemeBackgroundImage),
             fit: BoxFit.cover,
           ),
         ),
@@ -221,7 +222,26 @@ class _PostMatchStatsFormState extends State<PostMatchStatsForm> {
                           ),
                           SizedBox(height: 20),
                           ElevatedButton(
-                            onPressed: _submitForm,
+                            onPressed: () {
+                              _onSubmit();
+                              showDialog(
+                              context: context,
+                              builder: (BuildContext context) {
+                                return AlertDialog(
+                                  title: const Text('Workout Generated'),
+                                  content: Text(workoutResult),
+                                  actions: [
+                                    TextButton(
+                                      onPressed: () {
+                                        Navigator.of(context).pop();
+                                      },
+                                      child: const Text('Close'),
+                                    ),
+                                  ],
+                                );
+                              },
+                              );
+                            },
                             child: Text('Submit'),
                           ),
                         ],
