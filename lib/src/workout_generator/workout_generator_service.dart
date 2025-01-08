@@ -23,10 +23,21 @@ class WorkoutGeneratorService {
       {'key': 'KillParticipation', 'exercise': 'jumping jacks for your kill participation', 'value': killParticipation},
     ];
 
-    for (var stat in stats) {
-      workout += '\nDo ${weighting[stat['key']]!} sets of ${((stat['value']! as num) / (weighting[stat['key']]! as num)).round()} ${stat['exercise']}';
+    if (playerStats.isMVP) {
+      workout += '\nYou carried that game, do a plank for 60 seconds!';
+    } else {
+      workout += '\nYou didn''t carry that game, do a plank until failure!';
     }
 
+    for (var stat in stats) {
+      final sets = weighting[stat['key']]!;
+      final reps = ((stat['value']! as num) / (sets as num)).round();
+      final setText = sets == 1 ? 'set' : 'sets';
+
+      workout += '\nDo $sets $setText of $reps ${stat['exercise']}';
+    }
+
+    print(workout);
     return workout;
   }
 }
