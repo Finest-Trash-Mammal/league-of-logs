@@ -1,0 +1,6 @@
+{
+  "appTitle": "league_of_logs",
+  "@appTitle": {
+    "description": "The title of the application"
+  }
+}
