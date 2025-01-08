@@ -2,7 +2,8 @@
 - Implements splashscreen
 - Implements homescreen
 - Includes testing package
-- Added setting to save name and role for future API integration
+- Adds setting to save name and role for future API integration
+- Adds navigation
 
 2.0
 - Implements a Flutter project to replace the old python script

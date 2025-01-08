@@ -32,10 +32,6 @@ class _HomeScreenState extends State<HomeScreen> {
             TextButton(
               onPressed: () {
                 Navigator.of(context).pop();
-                Navigator.pushReplacement(
-                  context,
-                  MaterialPageRoute(builder: (context) => PostMatchStatsForm()),
-                );
               },
               child: Text('OK'),
             ),
@@ -47,41 +43,36 @@ class _HomeScreenState extends State<HomeScreen> {
 
   @override
   Widget build(BuildContext context) {
-    final isDarkMode = Theme.of(context).brightness == Brightness.dark;
     return Scaffold(
-      appBar: AppBar(title: Text('Home')),
+      appBar: AppBar(
+        title: Text('Home'),
+      ),
       body: Center(
-        child: Container(
-          decoration: BoxDecoration(
-            image: DecorationImage(
-              image: AssetImage(isDarkMode
-                ? darkThemeBackgroundImage
-                : lightThemeBackgroundImage),
-              fit: BoxFit.cover,
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Text(
+              'Welcome to the app!',
+              style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
             ),
-          ),
-          // child: Center(
-          //   child: Column(
-          //     children: [
-          //       Text(
-          //         appTitle,
-          //         style: TextStyle(
-          //           fontSize: 30,
-          //           fontWeight: FontWeight.bold,
-          //           color: Colors.white,
-          //         ),
-          //       ),
-          //       Text(
-          //         'Welcome to Summoners Lift!',
-          //         style: TextStyle(
-          //           fontSize: 20,
-          //           color: Colors.white,
-          //         ),
-          //       ),
-          //     ],
-          //   )
-          // ),
-        )
+            SizedBox(height: 20), // Adds spacing between elements
+            ElevatedButton(
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => PostMatchStatsForm()),
+                );
+              },
+              style: ElevatedButton.styleFrom(
+                padding: EdgeInsets.symmetric(horizontal: 30, vertical: 15),
+              ),
+              child: Text(
+                'Start Workout',
+                style: TextStyle(fontSize: 16),
+              ),
+            ),
+          ],
+        ),
       ),
     );
   }

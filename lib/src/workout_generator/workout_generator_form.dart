@@ -243,30 +243,41 @@ class _PostMatchStatsFormState extends State<PostMatchStatsForm> {
                             },
                           ),
                           SizedBox(height: 20),
-                          ElevatedButton(
-                            onPressed: () {
-                              if (_formKey.currentState!.validate()) {
-                                _onSubmit();
-                                showDialog(
-                                context: context,
-                                builder: (BuildContext context) {
-                                  return AlertDialog(
-                                    title: const Text('Workout Generated'),
-                                    content: Text(workoutResult),
-                                    actions: [
-                                        TextButton(
-                                          onPressed: () {
-                                            Navigator.of(context).pop();
-                                          },
-                                          child: const Text('Close'),
-                                        ),
-                                      ],
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              ElevatedButton(
+                                onPressed: () {
+                                  if (_formKey.currentState!.validate()) {
+                                    _onSubmit();
+                                    showDialog(
+                                    context: context,
+                                    builder: (BuildContext context) {
+                                      return AlertDialog(
+                                        title: const Text('Workout Generated'),
+                                        content: Text(workoutResult),
+                                        actions: [
+                                            TextButton(
+                                              onPressed: () {
+                                                Navigator.of(context).pop();
+                                              },
+                                              child: const Text('Close'),
+                                            ),
+                                          ],
+                                        );
+                                      },
                                     );
-                                  },
-                                );
-                              }
-                            },
-                            child: Text('Generate Workout'),
+                                  }
+                                },
+                                child: Text('Generate Workout'),
+                              ),
+                              ElevatedButton(
+                                onPressed: () {
+                                  Navigator.pop(context);
+                                },
+                                child: Text('Go Back'),
+                              ),
+                            ],
                           ),
                         ],
                       ),
