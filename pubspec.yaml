@@ -19,6 +19,8 @@ dependencies:
 
   shared_preferences: ^2.1.0
 
+  flutter_native_splash: ^2.0.0
+
   window_size:
     git:
       url: https://github.com/google/flutter-desktop-embedding
@@ -29,6 +31,10 @@ dev_dependencies:
     sdk: flutter
 
   flutter_lints: ^5.0.0
+
+flutter_native_splash:
+  color: "#ffffff" 
+  image: "assets/images/Braum_10.jpg" 
 
 flutter:
   uses-material-design: true

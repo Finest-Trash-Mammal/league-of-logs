@@ -5,6 +5,7 @@ import 'package:flutter_localizations/flutter_localizations.dart';
 import 'workout_generator/workout_generator_form.dart';
 import 'settings/settings_controller.dart';
 import 'settings/settings_view.dart';
+import 'home/splashscreen.dart';
 
 class MyApp extends StatelessWidget {
   const MyApp({
@@ -20,6 +21,7 @@ class MyApp extends StatelessWidget {
       listenable: settingsController,
       builder: (BuildContext context, Widget? child) {
         return MaterialApp(
+          home: SplashScreen(),
           restorationScopeId: 'app',
 
           localizationsDelegates: const [
