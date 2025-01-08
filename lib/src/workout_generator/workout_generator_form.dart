@@ -245,7 +245,7 @@ class _PostMatchStatsFormState extends State<PostMatchStatsForm> {
                                 );
                               }
                             },
-                            child: Text('Submit'),
+                            child: Text('Generate Workout'),
                           ),
                         ],
                       ),

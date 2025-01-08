@@ -12,6 +12,7 @@ const Map<String, String> roleBasedHeadings = {
   'Top': 'Let''s see if you''re a real brawler!\n',
 };
 const String noRoleFound = 'Oh no, something went wrong! I don''t know which role you are';
+const String disclaimer = 'This application is not endorsed by Riot Games and does not reflect the views or opinions of Riot Games or anyone officially involved in producing or managing League of Legends. League of Legends and Riot Games are trademarks or registered trademarks of Riot Games, Inc. League of Legends © Riot Games, Inc.';
 // ========================== Number Constants ==========================
 const Map<String, Map<String, int>> roleWeighting = {
   'ADC' : {
