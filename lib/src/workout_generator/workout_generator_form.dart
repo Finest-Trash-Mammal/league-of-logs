@@ -190,11 +190,11 @@ class _PostMatchStatsFormState extends State<PostMatchStatsForm> {
                           ),
                           TextFormField(
                             controller: _creepScoreController,
-                            decoration: InputDecoration(labelText: 'CS @ 10 minutes'),
+                            decoration: InputDecoration(labelText: 'CS'),
                             keyboardType: TextInputType.number,
                             validator: (value) {
                               if (value == null || value.isEmpty) {
-                                return 'Please enter CS @ 10 minutes';
+                                return 'Please enter CS';
                               }
                               return null;
                             },
