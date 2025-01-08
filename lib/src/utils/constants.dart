@@ -1,6 +1,7 @@
 // ========================== Theme Constants ==========================
 const String darkThemeBackgroundImage = 'assets/images/Rengar_1.jpg';
-const String lightThemeBackgroundImage = 'assets/images/Thresh_14.jpg';
+const String lightThemeBackgroundImage = 'assets/images/Ekko_11.jpg';
+const String appTitle = 'Summoners Lift';
 
 // ========================== String Constants ==========================
 const Map<String, String> roleBasedHeadings = {

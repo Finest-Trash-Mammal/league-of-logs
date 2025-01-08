@@ -1,7 +1,4 @@
 In Dev
-- Validation for Role and MVP
-- Generate workout logic
-- Generated workout popup
 
 2.0
 - Implements a Flutter project to replace the old python script
@@ -9,6 +6,9 @@ In Dev
     Input: Post-game stats
     Processing: Logic to generate workouts based on stats.
     Output: Workout items
+- Form Validation
+- Workout Generation Service
+- Workout Generation Popup
 
 1.1
 - Reorganized into class-based structure

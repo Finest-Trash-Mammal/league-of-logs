@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:window_size/window_size.dart';
 
+import 'src/utils/constants.dart';
 import 'src/app.dart';
 import 'src/settings/settings_controller.dart';
 import 'src/settings/settings_service.dart';
@@ -12,9 +13,7 @@ void main() async {
 
   WidgetsFlutterBinding.ensureInitialized();
 
-  setWindowTitle('League of Logs');
-  // setWindowMaxSize(const Size(1024, 768));
-  // setWindowMinSize(const Size(800, 600));
+  setWindowTitle(appTitle);
 
   runApp(MyApp(settingsController: settingsController));
 }

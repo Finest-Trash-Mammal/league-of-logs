@@ -44,6 +44,7 @@ class _PostMatchStatsFormState extends State<PostMatchStatsForm> {
       visionScore: int.parse(_visionScoreController.text),
       gameDuration: int.parse(_gameDurationController.text),
     );
+
     workoutResult = _workoutService.generateWorkout(playerStats: playerStats);
   }
 
@@ -223,24 +224,26 @@ class _PostMatchStatsFormState extends State<PostMatchStatsForm> {
                           SizedBox(height: 20),
                           ElevatedButton(
                             onPressed: () {
-                              _onSubmit();
-                              showDialog(
-                              context: context,
-                              builder: (BuildContext context) {
-                                return AlertDialog(
-                                  title: const Text('Workout Generated'),
-                                  content: Text(workoutResult),
-                                  actions: [
-                                    TextButton(
-                                      onPressed: () {
-                                        Navigator.of(context).pop();
-                                      },
-                                      child: const Text('Close'),
-                                    ),
-                                  ],
+                              if (_formKey.currentState!.validate()) {
+                                _onSubmit();
+                                showDialog(
+                                context: context,
+                                builder: (BuildContext context) {
+                                  return AlertDialog(
+                                    title: const Text('Workout Generated'),
+                                    content: Text(workoutResult),
+                                    actions: [
+                                        TextButton(
+                                          onPressed: () {
+                                            Navigator.of(context).pop();
+                                          },
+                                          child: const Text('Close'),
+                                        ),
+                                      ],
+                                    );
+                                  },
                                 );
-                              },
-                              );
+                              }
                             },
                             child: Text('Submit'),
                           ),
