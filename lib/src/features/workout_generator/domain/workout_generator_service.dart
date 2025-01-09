@@ -7,17 +7,6 @@ class WorkoutGeneratorService {
     required String fitnessLevel,
   }) {
     final killParticipation = (playerStats.kills + playerStats.assists) / playerStats.teamKills * 100;
-    final roleWorkouts = roleBasedHeadings;
-    final weightings = roleWeighting;
-
-    String workout = roleWorkouts[playerStats.role] ?? noRoleFound;
-    workout += adjustMVPWorkout(playerStats.isMVP, fitnessLevel);
-    final weighting = weightings[playerStats.role] ?? defaultWeighting;
-    Map<String, int> adjustedWeighting = {};
-
-    weighting.forEach((key, value) {
-      adjustedWeighting[key] = adjustWeighting(key, fitnessLevel).round();
-    });
 
     final stats = [
       {'key': 'Kills', 'exercise': 'squats for each kill', 'value': playerStats.kills},
@@ -28,20 +17,29 @@ class WorkoutGeneratorService {
       {'key': 'KillParticipation', 'exercise': 'jumping jacks for your kill participation', 'value': killParticipation},
     ];
 
+    final weightings = roleWeighting;
+    Map<String, int> adjustedWeighting = {};
+    final weighting = weightings[playerStats.role] ?? defaultWeighting;
+    weighting.forEach((key, value) {
+      adjustedWeighting[key] = adjustWeighting(key, fitnessLevel).round();
+    });
+
+    final roleWorkouts = roleBasedHeadings;
+    String workout = roleWorkouts[playerStats.role] ?? noRoleFound;
+    final plankDuration = getPlankDuration(playerStats.isMVP, fitnessLevel);
+    workout += playerStats.isMVP ? carriedMVP(plankDuration) : notCarriedMVP(plankDuration);
+
     for (var stat in stats) {
       final key = stat['key'] as String;
       final sets = weighting[key]!;
       final baseReps = ((stat['value']! as num) / (sets as num)).round();
       final adjustedSets = scaleSets(sets, fitnessLevel);
       final adjustedReps = scaleReps(baseReps, fitnessLevel);
-
       final setText = sets == 1 ? 'set' : 'sets';
 
       workout += '\nDo $adjustedSets $setText of $adjustedReps ${stat['exercise']}';
     }
 
-    print(workout);
-    print(fitnessLevel);
     return workout;
   }
 
@@ -89,22 +87,16 @@ class WorkoutGeneratorService {
     }
   }
 
-  String adjustMVPWorkout(bool isMVP, String fitnessLevel) {
+  int getPlankDuration(bool isMVP, String fitnessLevel) {
     switch (fitnessLevel) {
       case 'Beginner':
-        return isMVP 
-        ? carriedMVP(15)
-        : notCarriedMVP(20);
+        return isMVP ? 15 : 20;
       case 'Intermediate':
-        return isMVP 
-        ? carriedMVP(30)
-        : notCarriedMVP(40);
+        return isMVP ? 30 : 40;
       case 'Advanced':
-        return isMVP 
-        ? carriedMVP(45)
-        : notCarriedMVP(60);
+        return isMVP ? 45 : 60;
       default:
-        return '\nYou carried that game!';
+        return 0;
     }
   }
 }
