@@ -1,6 +1,6 @@
 import 'package:flutter_test/flutter_test.dart';
 import 'package:league_of_logs/src/utils/constants.dart';
-import 'package:league_of_logs/src/workout_generator/player_stats.dart';
+import 'package:league_of_logs/src/workout_generator/player_stats_DTO.dart';
 import 'package:league_of_logs/src/workout_generator/workout_generator_service.dart';
 
 void main() {
@@ -9,7 +9,7 @@ void main() {
 
     test('generates workout correctly for decent ADC stats on Advanced fitness', () {
       // Arrange
-      final PlayerStats stats = PlayerStats(
+      final PlayerStatsDTO stats = PlayerStatsDTO(
         name: 'Demo1Ace',
         role: 'ADC',
         isMVP: true,

@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:league_of_logs/src/workout_generator/player_stats_DTO.dart';
 
 import '../settings/settings_view.dart';
 import 'package:league_of_logs/src/workout_generator/workout_generator_service.dart';
-import 'package:league_of_logs/src/workout_generator/player_stats.dart';
 import 'package:league_of_logs/src/utils/constants.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -41,7 +41,7 @@ class _PostMatchStatsFormState extends State<PostMatchStatsForm> {
         await prefs.setString('savedRole', _role);
     }
 
-    final playerStats = PlayerStats(
+    final playerStats = PlayerStatsDTO(
       name: _playerNameController.text,
       role: _role,
       isMVP: _isMVP,

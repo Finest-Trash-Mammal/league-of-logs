@@ -1,10 +1,8 @@
 import 'package:flutter/material.dart';
 import 'settings_service.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:logger/logger.dart';
 
 class SettingsController with ChangeNotifier {
-  final Logger _logger = Logger();
   final SettingsService _settingsService;
   late ThemeMode _themeMode;
   late SharedPreferences _prefs;

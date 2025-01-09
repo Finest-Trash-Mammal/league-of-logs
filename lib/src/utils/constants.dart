@@ -23,7 +23,7 @@ const Map<String, Map<String, int>> roleWeighting = {
     'Assists': 1,
     'VisionScore': 1,
     'CreepScore': 1,
-    'KillParticipation': 2,
+    'KillParticipation': 3,
   },
   'Support' : {
     'Kills': 1,
@@ -31,7 +31,7 @@ const Map<String, Map<String, int>> roleWeighting = {
     'Assists': 3,
     'VisionScore': 3,
     'CreepScore': 1,
-    'KillParticipation': 2,
+    'KillParticipation': 3,
   },
   'Middle' : {
     'Kills': 2,
@@ -39,7 +39,7 @@ const Map<String, Map<String, int>> roleWeighting = {
     'Assists': 2,
     'VisionScore': 1,
     'CreepScore': 3,
-    'KillParticipation': 2,
+    'KillParticipation': 3,
   },
   'Jungle' : {
     'Kills': 1,
@@ -47,7 +47,7 @@ const Map<String, Map<String, int>> roleWeighting = {
     'Assists': 2,
     'VisionScore': 3,
     'CreepScore': 2,
-    'KillParticipation': 3,
+    'KillParticipation': 1,
   },
   'Top' : {
     'Kills': 3,
@@ -55,7 +55,7 @@ const Map<String, Map<String, int>> roleWeighting = {
     'Assists': 2,
     'VisionScore': 1,
     'CreepScore': 2,
-    'KillParticipation': 2,
+    'KillParticipation': 3,
   },
 };
 const Map<String, int> defaultWeighting = {
@@ -64,7 +64,7 @@ const Map<String, int> defaultWeighting = {
   'Assists': 1,
   'VisionScore': 2,
   'CreepScore': 1,
-  'KillParticipation': 2,
+  'KillParticipation': 3,
 };
 // ========================== Test String Constants ==========================
 const String testAdvancedFitnessADC = 'Lets see just how much you can carry!\n\nYou carried that game, do a plank for 45 seconds!\nDo 3 sets of 6 squats for each kill\nDo 2 sets of 4 lunges for each assist\nDo 1 set of 10 burpees for each death\nDo 1 set of 19 high knees for your vision score\nDo 1 set of 6 sit-ups for your CS\nDo 2 sets of 31 jumping jacks for your kill participation';
