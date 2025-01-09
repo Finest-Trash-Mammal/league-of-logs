@@ -1,9 +1,12 @@
 2.1
 - Implements splashscreen
 - Implements homescreen
-- Includes testing package
+- Implements unit testing
 - Adds setting to save name and role for future API integration
 - Adds navigation
+- Adds fitness level seettings
+- Implements logging
+- Revised workout generation logic
 
 2.0
 - Implements a Flutter project to replace the old python script
