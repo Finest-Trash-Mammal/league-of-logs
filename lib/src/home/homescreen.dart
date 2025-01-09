@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:league_of_logs/src/settings/settings_view.dart';
 import 'package:league_of_logs/src/utils/constants.dart';
 import 'package:league_of_logs/src/workout_generator/workout_generator_form.dart';
 
@@ -46,6 +47,14 @@ class _HomeScreenState extends State<HomeScreen> {
     return Scaffold(
       appBar: AppBar(
         title: Text('Home'),
+        actions: [
+          IconButton(
+            icon: const Icon(Icons.settings),
+            onPressed: () {
+              Navigator.restorablePushNamed(context, SettingsView.routeName);
+            },
+          ),
+        ],
       ),
       body: Center(
         child: Column(

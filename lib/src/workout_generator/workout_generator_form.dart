@@ -32,6 +32,8 @@ class _PostMatchStatsFormState extends State<PostMatchStatsForm> {
 
   String workoutResult = '';
 
+  String _fitnessLevel = 'Beginner';
+
   Future<void> _onSubmit() async {
     final prefs = await SharedPreferences.getInstance();
     if (prefs.getBool('saveNameAndRole') ?? false) {
@@ -52,7 +54,10 @@ class _PostMatchStatsFormState extends State<PostMatchStatsForm> {
       gameDuration: int.parse(_gameDurationController.text),
     );
 
-    workoutResult = _workoutService.generateWorkout(playerStats: playerStats);
+    _fitnessLevel = prefs.getString('fitnessLevel') ?? 'Beginner';
+    print("Fitness level in SharedPrefs: $_fitnessLevel");
+
+    workoutResult = _workoutService.generateWorkout(playerStats: playerStats, fitnessLevel: _fitnessLevel);
   }
 
   @override

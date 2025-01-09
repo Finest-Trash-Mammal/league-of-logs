@@ -1,30 +1,49 @@
 import 'package:flutter/material.dart';
 import 'settings_service.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:logger/logger.dart';
 
 class SettingsController with ChangeNotifier {
+  final Logger _logger = Logger();
   final SettingsService _settingsService;
   late ThemeMode _themeMode;
+  late SharedPreferences _prefs;
 
   SettingsController(this._settingsService);
 
   ThemeMode get themeMode => _themeMode;
 
+  bool saveNameAndRole = false;
+  String fitnessLevel = 'Beginner';
+
   Future<void> loadSettings() async {
     _themeMode = await _settingsService.themeMode();
-    final prefs = await SharedPreferences.getInstance();
-    saveNameAndRole = prefs.getBool('saveNameAndRole') ?? false;
+    _prefs = await SharedPreferences.getInstance();
+    saveNameAndRole = _prefs.getBool('saveNameAndRole') ?? false;
+    fitnessLevel = _prefs.getString('fitnessLevel') ?? 'Beginner';
     notifyListeners();
   }
 
-  bool saveNameAndRole = false;
-
   Future<void> toggleSaveNameAndRole(bool value) async {
-    saveNameAndRole = value;
-    notifyListeners();
+    try {
+      saveNameAndRole = value;
+      notifyListeners();
+      
+      await _prefs.setBool('saveNameAndRole', value);
+    } on Exception catch (e) {
+      print('Error toggling saveNameAndRole: $e');
+    }
+  }
 
-    final prefs = await SharedPreferences.getInstance();
-    await prefs.setBool('saveNameAndRole', value);
+  Future<void> setFitnessLevel(String newFitnessLevel) async {
+    try {
+      fitnessLevel = newFitnessLevel;
+      notifyListeners();
+      
+      await _prefs.setString('fitnessLevel', newFitnessLevel);
+    } on Exception catch (e) {
+      print('Error toggling saveNameAndRole: $e');
+    }
   }
 
   Future<void> updateThemeMode(ThemeMode newThemeMode) async {
