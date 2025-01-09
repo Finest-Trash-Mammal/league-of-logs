@@ -1,5 +1,5 @@
-import 'package:league_of_logs/src/utils/constants.dart';
-import 'package:league_of_logs/src/workout_generator/player_stats_DTO.dart';
+import 'package:league_of_logs/src/core/constants.dart';
+import 'package:league_of_logs/src/features/workout_generator/player_stats_DTO.dart';
 
 class WorkoutGeneratorService {
   String generateWorkout({

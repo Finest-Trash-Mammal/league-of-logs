@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:window_size/window_size.dart';
 
-import 'src/utils/constants.dart';
+import 'src/core/constants.dart';
 import 'src/app.dart';
-import 'src/settings/settings_controller.dart';
-import 'src/settings/settings_service.dart';
+import 'src/features/settings/presentation/settings_controller.dart';
+import 'src/features/settings/domain/settings_service.dart';
 
 void main() async {
   final settingsController = SettingsController(SettingsService());

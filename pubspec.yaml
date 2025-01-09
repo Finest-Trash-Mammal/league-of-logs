@@ -27,7 +27,8 @@ dependencies:
       path: plugins/window_size
 
   logger: ^1.4.0
-  path_provider: ^2.1.5
+  sqflite: ^2.0.0+3
+  path_provider: ^2.0.9
 
 dev_dependencies:
   flutter_test:

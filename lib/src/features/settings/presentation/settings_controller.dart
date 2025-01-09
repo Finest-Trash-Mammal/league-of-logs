@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'settings_service.dart';
+import '../domain/settings_service.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class SettingsController with ChangeNotifier {
