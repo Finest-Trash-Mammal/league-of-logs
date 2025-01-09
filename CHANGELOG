@@ -7,6 +7,7 @@
 - Adds fitness level seettings
 - Implements logging
 - Revised workout generation logic
+- Implements Clean Architecture
 
 2.0
 - Implements a Flutter project to replace the old python script
