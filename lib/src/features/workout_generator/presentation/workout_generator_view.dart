@@ -3,7 +3,7 @@ import 'package:league_of_logs/src/features/workout_generator/data/player_stats_
 
 import '../../settings/presentation/settings_view.dart';
 import 'package:league_of_logs/src/features/workout_generator/domain/workout_generator_service.dart';
-import 'package:league_of_logs/src/core/constants.dart';
+import 'package:league_of_logs/src/core/utils/constants.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class PostMatchStatsForm extends StatefulWidget {

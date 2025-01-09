@@ -1,4 +1,4 @@
-import 'package:league_of_logs/src/core/constants.dart';
+import 'package:league_of_logs/src/core/utils/constants.dart';
 import 'package:league_of_logs/src/features/workout_generator/data/player_stats_DTO.dart';
 
 class WorkoutGeneratorService {
