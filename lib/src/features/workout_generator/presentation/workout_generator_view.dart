@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:league_of_logs/src/features/workout_generator/player_stats_DTO.dart';
+import 'package:league_of_logs/src/features/workout_generator/data/player_stats_DTO.dart';
 
 import '../../settings/presentation/settings_view.dart';
 import 'package:league_of_logs/src/features/workout_generator/domain/workout_generator_service.dart';
