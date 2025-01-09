@@ -55,7 +55,6 @@ class _PostMatchStatsFormState extends State<PostMatchStatsForm> {
     );
 
     _fitnessLevel = prefs.getString('fitnessLevel') ?? 'Beginner';
-    print("Fitness level in SharedPrefs: $_fitnessLevel");
 
     workoutResult = _workoutService.generateWorkout(playerStats: playerStats, fitnessLevel: _fitnessLevel);
   }
@@ -113,7 +112,7 @@ class _PostMatchStatsFormState extends State<PostMatchStatsForm> {
         ),
         child: Center(
           child: ConstrainedBox(
-            constraints: const BoxConstraints(maxWidth: 300),
+            constraints: const BoxConstraints(maxWidth: 325),
             child: Padding(
               padding: const EdgeInsets.symmetric(vertical: 8),
               child: Container(
@@ -160,15 +159,25 @@ class _PostMatchStatsFormState extends State<PostMatchStatsForm> {
                               return null;
                             },
                           ),
-                          CheckboxListTile(
-                            title: const Text('MVP'),
-                            value: _isMVP,
-                            onChanged: (bool? value) {
-                              setState(() {
-                                _isMVP = value ?? false;
-                              });
-                            },
-                            contentPadding: const EdgeInsets.symmetric(horizontal: 90)
+                          Padding(
+                            padding: const EdgeInsets.only(top: 8.0),
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                Text(
+                                  'MVP',
+                                  style: Theme.of(context).textTheme.bodyLarge,
+                                ),
+                                Checkbox(
+                                  value: _isMVP,
+                                  onChanged: (bool? value) {
+                                    setState(() {
+                                      _isMVP = value ?? false;
+                                    });
+                                  }
+                                ),
+                              ],
+                            ),
                           ),
                           TextFormField(
                             controller: _killsController,
