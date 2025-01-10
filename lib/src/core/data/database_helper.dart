@@ -1,5 +1,5 @@
-import 'package:league_of_logs/src/features/workout_generator/data/workout.dart';
-import 'package:league_of_logs/src/features/workout_generator/data/player_stats.dart';
+import 'package:summoners_lift/src/features/workout_generator/data/workout.dart';
+import 'package:summoners_lift/src/features/workout_generator/data/player_stats.dart';
 import 'package:sqflite/sqflite.dart';
 import 'package:path/path.dart';
 

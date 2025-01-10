@@ -1,6 +1,6 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android">
     <application
-        android:label="league_of_logs"
+        android:label="summoners_lift"
         android:name="${applicationName}"
         android:icon="@mipmap/ic_launcher">
         <activity

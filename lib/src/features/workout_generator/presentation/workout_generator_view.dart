@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:league_of_logs/src/features/workout_generator/data/player_stats.dart';
+import 'package:summoners_lift/src/features/workout_generator/data/player_stats.dart';
 
 import '../../settings/presentation/settings_view.dart';
-import 'package:league_of_logs/src/features/workout_generator/domain/workout_generator_service.dart';
-import 'package:league_of_logs/src/core/utils/constants.dart';
+import 'package:summoners_lift/src/features/workout_generator/domain/workout_generator_service.dart';
+import 'package:summoners_lift/src/core/utils/constants.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class PostMatchStatsForm extends StatefulWidget {

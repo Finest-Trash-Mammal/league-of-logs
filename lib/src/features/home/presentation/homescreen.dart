@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:league_of_logs/src/features/settings/presentation/settings_view.dart';
-import 'package:league_of_logs/src/core/utils/constants.dart';
-import 'package:league_of_logs/src/features/workout_generator/presentation/workout_generator_view.dart';
+import 'package:summoners_lift/src/features/settings/presentation/settings_view.dart';
+import 'package:summoners_lift/src/core/utils/constants.dart';
+import 'package:summoners_lift/src/features/workout_generator/presentation/workout_generator_view.dart';
 
 class HomeScreen extends StatefulWidget {
   @override

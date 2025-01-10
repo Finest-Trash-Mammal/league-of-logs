@@ -1,8 +1,8 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
-import 'package:league_of_logs/src/features/home/presentation/homescreen.dart';
-import 'package:league_of_logs/src/core/utils/constants.dart';
+import 'package:summoners_lift/src/features/home/presentation/homescreen.dart';
+import 'package:summoners_lift/src/core/utils/constants.dart';
 
 class SplashScreen extends StatefulWidget {
   @override
