@@ -8,12 +8,12 @@ import 'package:shared_preferences/shared_preferences.dart';
 
 class PostMatchStatsForm extends StatefulWidget {
   @override
-  _PostMatchStatsFormState createState() => _PostMatchStatsFormState();
+  PostMatchStatsFormState createState() => PostMatchStatsFormState();
 
   static const routeName = '/';
 }
 
-class _PostMatchStatsFormState extends State<PostMatchStatsForm> {
+class PostMatchStatsFormState extends State<PostMatchStatsForm> {
   final _formKey = GlobalKey<FormState>();
   final _playerNameController = TextEditingController();
   final _killsController = TextEditingController();
@@ -64,6 +64,10 @@ class _PostMatchStatsFormState extends State<PostMatchStatsForm> {
       workoutResult = result;
     });
 
+    _showWorkoutDialog(workoutResult);
+  }
+
+  void _showWorkoutDialog(String workoutResult) {
     showDialog(
       context: context,
       builder: (BuildContext context) {
@@ -71,16 +75,16 @@ class _PostMatchStatsFormState extends State<PostMatchStatsForm> {
           title: const Text('Workout Generated'),
           content: Text(workoutResult),
           actions: [
-              TextButton(
-                onPressed: () {
-                  Navigator.of(context).pop();
-                },
-                child: const Text('Close'),
-              ),
-            ],
-          );
-        },
-      );
+            TextButton(
+              onPressed: () {
+                Navigator.of(context).pop();
+              },
+              child: const Text('Close'),
+            ),
+          ],
+        );
+      },
+    );
   }
 
   @override
