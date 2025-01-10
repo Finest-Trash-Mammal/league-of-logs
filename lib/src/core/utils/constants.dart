@@ -1,4 +1,6 @@
 // ========================== Theme Constants ==========================
+// ignore_for_file: constant_identifier_names
+
 const String darkThemeBackgroundImage = 'assets/images/Rengar_1.jpg';
 const String lightThemeBackgroundImage = 'assets/images/Ekko_11.jpg';
 const String appTitle = 'Summoners Lift';
@@ -15,6 +17,43 @@ const String noRoleFound = 'Oh no, something went wrong! I don''t know which rol
 String carriedMVP(seconds) {return '\nYou carried that game, do a plank for $seconds seconds!';} 
 String notCarriedMVP(seconds) {return '\nYou didn\'t carry that game, do a plank for $seconds seconds!';} 
 const String disclaimer = 'This application is not endorsed by Riot Games and does not reflect the views or opinions of Riot Games or anyone officially involved in producing or managing League of Legends. League of Legends and Riot Games are trademarks or registered trademarks of Riot Games, Inc. League of Legends © Riot Games, Inc.';
+const exerciseMapping = {
+  'Kills': 'squats',
+  'Deaths': 'lunges',
+  'Assists': 'burpees',
+  'VisionScore': 'high knees',
+  'CreepScore': 'sit-ups',
+  'KillParticipation': 'jumping jacks',
+};
+class StatKeys {
+  static const String kills = 'Kills';
+  static const String deaths = 'Deaths';
+  static const String assists = 'Assists';
+  static const String visionScore = 'VisionScore';
+  static const String creepScore = 'CreepScore';
+  static const String killParticipation = 'KillParticipation';
+}
+class ExerciseDescriptions {
+  static const String kills = 'squats for each kill';
+  static const String deaths = 'lunges for each assist';
+  static const String assists = 'burpees for each death';
+  static const String visionScore = 'high knees for your vision score';
+  static const String creepScore = 'sit-ups for your CS';
+  static const String killParticipation = 'jumping jacks for your kill participation';
+}
+class FitnessLevels {
+  static const String beginner = 'Beginner';
+  static const String intermediate = 'Intermediate';
+  static const String advanced = 'Advanced';
+}
+class Roles {
+  static const String ADC = 'ADC';
+  static const String support = 'Support';
+  static const String middle = 'Middle';
+  static const String top = 'Top';
+  static const String jungle = 'Jungle';
+}
+
 // ========================== Number Constants ==========================
 const Map<String, Map<String, int>> roleWeighting = {
   'ADC' : {

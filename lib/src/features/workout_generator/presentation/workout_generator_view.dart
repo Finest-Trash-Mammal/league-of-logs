@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:league_of_logs/src/features/workout_generator/data/player_stats_DTO.dart';
+import 'package:league_of_logs/src/features/workout_generator/data/player_stats.dart';
 
 import '../../settings/presentation/settings_view.dart';
 import 'package:league_of_logs/src/features/workout_generator/domain/workout_generator_service.dart';
@@ -24,7 +24,7 @@ class _PostMatchStatsFormState extends State<PostMatchStatsForm> {
   final _visionScoreController = TextEditingController();
   final _gameDurationController = TextEditingController();
 
-  String _role = 'ADC';
+  String _role = Roles.ADC;
 
   bool _isMVP = false;
 
@@ -32,7 +32,7 @@ class _PostMatchStatsFormState extends State<PostMatchStatsForm> {
 
   String workoutResult = '';
 
-  String _fitnessLevel = 'Beginner';
+  String _fitnessLevel = FitnessLevels.beginner;
 
   Future<void> _onSubmit() async {
     final prefs = await SharedPreferences.getInstance();
@@ -41,7 +41,8 @@ class _PostMatchStatsFormState extends State<PostMatchStatsForm> {
         await prefs.setString('savedRole', _role);
     }
 
-    final playerStats = PlayerStatsDTO(
+    final playerStats = PlayerStats(
+      id: null,
       name: _playerNameController.text,
       role: _role,
       isMVP: _isMVP,
@@ -52,11 +53,34 @@ class _PostMatchStatsFormState extends State<PostMatchStatsForm> {
       creepScore: int.parse(_creepScoreController.text),
       visionScore: int.parse(_visionScoreController.text),
       gameDuration: int.parse(_gameDurationController.text),
+      submitDate: DateTime.now(),
     );
 
-    _fitnessLevel = prefs.getString('fitnessLevel') ?? 'Beginner';
+    _fitnessLevel = prefs.getString('fitnessLevel') ?? FitnessLevels.beginner;
 
-    workoutResult = _workoutService.generateWorkout(playerStats: playerStats, fitnessLevel: _fitnessLevel);
+    final result = await _workoutService.generateWorkout(playerStats: playerStats, fitnessLevel: _fitnessLevel);
+
+    setState(() {
+      workoutResult = result;
+    });
+
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return AlertDialog(
+          title: const Text('Workout Generated'),
+          content: Text(workoutResult),
+          actions: [
+              TextButton(
+                onPressed: () {
+                  Navigator.of(context).pop();
+                },
+                child: const Text('Close'),
+              ),
+            ],
+          );
+        },
+      );
   }
 
   @override
@@ -144,7 +168,7 @@ class _PostMatchStatsFormState extends State<PostMatchStatsForm> {
                                 _role = value!;
                               });
                             },
-                            items: ['ADC', 'Support', 'Middle', 'Jungle', 'Top']
+                            items: [Roles.ADC, Roles.support, Roles.middle, Roles.jungle, Roles.top]
                                 .map((role) {
                               return DropdownMenuItem<String>(
                                 value: role,
@@ -264,23 +288,6 @@ class _PostMatchStatsFormState extends State<PostMatchStatsForm> {
                                 onPressed: () {
                                   if (_formKey.currentState!.validate()) {
                                     _onSubmit();
-                                    showDialog(
-                                    context: context,
-                                    builder: (BuildContext context) {
-                                      return AlertDialog(
-                                        title: const Text('Workout Generated'),
-                                        content: Text(workoutResult),
-                                        actions: [
-                                            TextButton(
-                                              onPressed: () {
-                                                Navigator.of(context).pop();
-                                              },
-                                              child: const Text('Close'),
-                                            ),
-                                          ],
-                                        );
-                                      },
-                                    );
                                   }
                                 },
                                 child: Text('Generate Workout'),

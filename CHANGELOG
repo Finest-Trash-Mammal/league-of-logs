@@ -8,6 +8,7 @@
 - Implements logging
 - Revised workout generation logic
 - Implements Clean Architecture
+- Implements SQLite database and basic CRUD functionality
 
 2.0
 - Implements a Flutter project to replace the old python script

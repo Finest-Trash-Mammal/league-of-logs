@@ -1,5 +1,5 @@
 class PlayerStats {
-  final int id;
+  final int? id;
   final String name;
   final String role;
   final bool isMVP;
@@ -10,6 +10,7 @@ class PlayerStats {
   final int creepScore;
   final int visionScore;
   final int gameDuration;
+  final DateTime submitDate;
 
   PlayerStats({
     required this.id,
@@ -23,6 +24,7 @@ class PlayerStats {
     required this.creepScore,
     required this.visionScore,
     required this.gameDuration,
+    required this.submitDate,
   });
 
   Map<String, dynamic> toMap() {
@@ -38,6 +40,7 @@ class PlayerStats {
       'creepScore': creepScore,
       'visionScore': visionScore,
       'gameDuration': gameDuration,
+      'submitDate': submitDate.toIso8601String(),
     };
   }
 
@@ -54,6 +57,7 @@ class PlayerStats {
       creepScore: map['creepScore'],
       visionScore: map['visionScore'],
       gameDuration: map['gameDuration'],
+      submitDate: DateTime.parse(map['submitDate']),
     );
   }
 
