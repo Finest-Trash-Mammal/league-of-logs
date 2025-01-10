@@ -106,4 +106,4 @@ const Map<String, int> defaultWeighting = {
   'KillParticipation': 3,
 };
 // ========================== Test String Constants ==========================
-const String testAdvancedFitnessADC = 'Lets see just how much you can carry!\n\nYou carried that game, do a plank for 45 seconds!\nDo 3 sets of 6 squats for each kill\nDo 2 sets of 4 lunges for each assist\nDo 1 set of 10 burpees for each death\nDo 1 set of 19 high knees for your vision score\nDo 1 set of 6 sit-ups for your CS\nDo 2 sets of 31 jumping jacks for your kill participation';
+// TODO
