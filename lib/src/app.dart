@@ -2,9 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 
-import 'workout_generator/workout_generator_form.dart';
-import 'settings/settings_controller.dart';
-import 'settings/settings_view.dart';
+import 'features/workout_generator/presentation/workout_generator_view.dart';
+import 'features/settings/presentation/settings_controller.dart';
+import 'features/settings/presentation/settings_view.dart';
+import 'features/home/presentation/splashscreen.dart';
 
 class MyApp extends StatelessWidget {
   const MyApp({
@@ -20,6 +21,7 @@ class MyApp extends StatelessWidget {
       listenable: settingsController,
       builder: (BuildContext context, Widget? child) {
         return MaterialApp(
+          home: SplashScreen(),
           restorationScopeId: 'app',
 
           localizationsDelegates: const [

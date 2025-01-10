@@ -1,4 +1,14 @@
-In Dev
+2.1
+- Implements splashscreen
+- Implements homescreen
+- Implements unit testing
+- Adds setting to save name and role for future API integration
+- Adds navigation
+- Adds fitness level seettings
+- Implements logging
+- Revised workout generation logic
+- Implements Clean Architecture
+- Implements SQLite database and basic CRUD functionality
 
 2.0
 - Implements a Flutter project to replace the old python script
