@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
+import 'package:summoners_lift/src/features/workout_stats/presentation/workout_stat_view.dart';
 
 import 'features/workout_generator/presentation/workout_generator_view.dart';
 import 'features/settings/presentation/settings_controller.dart';
@@ -50,6 +51,8 @@ class MyApp extends StatelessWidget {
                     return SettingsView(controller: settingsController);
                   case PostMatchStatsForm.routeName:
                     return PostMatchStatsForm();
+                  case WorkoutStatView.routeName:
+                    return WorkoutStatView();
                   default:
                     return PostMatchStatsForm();
                 }

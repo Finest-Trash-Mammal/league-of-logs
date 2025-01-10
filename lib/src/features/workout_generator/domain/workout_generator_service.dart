@@ -1,7 +1,7 @@
 import 'dart:convert';
 
 import 'package:summoners_lift/src/core/utils/constants.dart';
-import 'package:summoners_lift/src/features/workout_generator/data/exercise.dart';
+import 'package:summoners_lift/src/features/workout_stats/data/exercise.dart';
 import 'package:summoners_lift/src/features/workout_generator/data/player_stats.dart';
 import 'package:summoners_lift/src/features/workout_generator/data/workout.dart';
 import 'package:summoners_lift/src/core/data/database_helper.dart';

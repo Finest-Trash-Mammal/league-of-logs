@@ -72,4 +72,15 @@ class DatabaseHelper {
     final result = await db.query('Workouts');
     return result.map((e) => Workout.fromMap(e)).toList();
   }
+
+  Future<List<Workout>> getWorkout(name) async {
+    final db = await instance.database;
+    final result = await db.query(
+      'Workouts',
+      where: 'name = ?',
+      whereArgs: [name],
+    );
+
+    return result.map((e) => Workout.fromMap(e)).toList();
+  }
 }

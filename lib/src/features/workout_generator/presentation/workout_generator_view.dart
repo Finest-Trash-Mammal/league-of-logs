@@ -15,7 +15,6 @@ class PostMatchStatsForm extends StatefulWidget {
 
 class PostMatchStatsFormState extends State<PostMatchStatsForm> {
   final _formKey = GlobalKey<FormState>();
-  final _playerNameController = TextEditingController();
   final _killsController = TextEditingController();
   final _deathsController = TextEditingController();
   final _assistsController = TextEditingController();
@@ -25,6 +24,8 @@ class PostMatchStatsFormState extends State<PostMatchStatsForm> {
   final _gameDurationController = TextEditingController();
 
   String _role = Roles.ADC;
+
+  String _name = '';
 
   bool _isMVP = false;
 
@@ -37,13 +38,13 @@ class PostMatchStatsFormState extends State<PostMatchStatsForm> {
   Future<void> _onSubmit() async {
     final prefs = await SharedPreferences.getInstance();
     if (prefs.getBool('saveNameAndRole') ?? false) {
-        await prefs.setString('savedName', _playerNameController.text);
+        await prefs.setString('savedName', _name);
         await prefs.setString('savedRole', _role);
     }
 
     final playerStats = PlayerStats(
       id: null,
-      name: _playerNameController.text,
+      name: _name,
       role: _role,
       isMVP: _isMVP,
       kills: int.parse(_killsController.text),
@@ -90,20 +91,10 @@ class PostMatchStatsFormState extends State<PostMatchStatsForm> {
   @override
   void initState() {
     super.initState();
-    _loadSavedData();
-  }
-
-  Future<void> _loadSavedData() async {
-    final prefs = await SharedPreferences.getInstance();
-    if (prefs.getBool('saveNameAndRole') ?? false) {
-      _playerNameController.text = prefs.getString('savedName') ?? '';
-      _role = prefs.getString('savedRole') ?? '';
-    }
   }
 
   @override
   void dispose() {
-    _playerNameController.dispose();
     _killsController.dispose();
     _deathsController.dispose();
     _assistsController.dispose();
@@ -155,16 +146,6 @@ class PostMatchStatsFormState extends State<PostMatchStatsForm> {
                       key: _formKey,
                       child: Column(
                         children: <Widget>[
-                          TextFormField(
-                            controller: _playerNameController,
-                            decoration: InputDecoration(labelText: 'Player Name'),
-                            validator: (value) {
-                              if (value == null || value.isEmpty) {
-                                return 'Please enter player name';
-                              }
-                              return null;
-                            },
-                          ),
                           DropdownButtonFormField<String>(
                             value: _role,
                             onChanged: (value) {
