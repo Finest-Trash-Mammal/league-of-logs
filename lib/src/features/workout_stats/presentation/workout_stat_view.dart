@@ -110,7 +110,7 @@ class WorkoutStatViewState extends State<WorkoutStatView> {
                             final totalCount = exerciseTotals[exerciseType]!;
 
                             return ListTile(
-                              title: Text('$exerciseType'),
+                              title: Text(exerciseType),
                               subtitle: Text('Total: $totalCount'),
                             );
                           }
