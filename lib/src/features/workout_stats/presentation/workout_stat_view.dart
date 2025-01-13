@@ -24,13 +24,18 @@ class WorkoutStatViewState extends State<WorkoutStatView> {
     if (prefs.getBool('saveNameAndRole') ?? false) {
       _playerName = prefs.getString('savedName') ?? '';
     }
+
+    setState(() {
+      _workouts = DatabaseHelper.instance.getWorkout(_playerName);
+    });
   }
 
   @override
   void initState() {
     super.initState();
+    _playerName = '';
+    _workouts = Future.value([]);
     _loadSavedData();
-    _workouts = DatabaseHelper.instance.getWorkout(_playerName);
   }
 
   @override
@@ -90,21 +95,33 @@ class WorkoutStatViewState extends State<WorkoutStatView> {
                         List<Exercise> exercises = [];
 
                         for (var workout in workouts) {
-                          Exercise exercise = Exercise.fromJson(workout.exercise);
-                          exercises.add(exercise);
+                          exercises += Exercise.fromJsonList(workout.exercise);
                         }
+
+                        print(exercises);
 
                         final Map<String, int> exerciseTotals = {};
 
                         for (var exercise in exercises) {
-                          if (exerciseTotals.containsKey(exercise.type)) {
-                            exerciseTotals[exercise.type] = exerciseTotals[exercise.type]! + 1;
+                          int sets = exercise.sets;
+                          int reps = exercise.reps;
+                          Duration seconds = exercise.seconds;
+
+                          if (sets > 0 && reps > 0) {
+                            final exerciseTypeTotal = <String, int>{'${exercise.type.toUpperCase()} count: ' : (sets * reps)};
+                            exerciseTotals.addEntries(exerciseTypeTotal.entries);
+                          } else if (seconds.inSeconds > 0) {
+                            final exerciseTypeTotal = <String, int>{'${exercise.type.toUpperCase()} seconds: ' : seconds.inSeconds};
+                            exerciseTotals.addEntries(exerciseTypeTotal.entries);
                           } else {
-                            exerciseTotals[exercise.type] = 1;
+                            final exerciseTypeTotal = <String, int>{'Unknown exercise' : 0};
+                            exerciseTotals.addEntries(exerciseTypeTotal.entries);
                           }
                         }
-
+                        
                         return ListView.builder(
+                          shrinkWrap: true,
+                          itemCount: exerciseTotals.length,
                           itemBuilder: (context, index) {
                             final exerciseType = exerciseTotals.keys.elementAt(index);
                             final totalCount = exerciseTotals[exerciseType]!;

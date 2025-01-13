@@ -38,9 +38,13 @@ class PostMatchStatsFormState extends State<PostMatchStatsForm> {
   Future<void> _onSubmit() async {
     final prefs = await SharedPreferences.getInstance();
     if (prefs.getBool('saveNameAndRole') ?? false) {
-        await prefs.setString('savedName', _name);
-        await prefs.setString('savedRole', _role);
+      await prefs.setString('savedRole', _role);
+      setState(() {
+        _name = prefs.getString('savedName') ?? '';
+      });
     }
+    print(prefs.getString('savedName'));
+    print(_name);
 
     final playerStats = PlayerStats(
       id: null,

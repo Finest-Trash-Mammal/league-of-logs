@@ -22,13 +22,23 @@ class Exercise {
     });
   }
 
-  factory Exercise.fromJson(String jsonStr) {
-    final Map<String, dynamic> jsonMap = jsonDecode(jsonStr);
+  factory Exercise.fromJson(Map<String, dynamic> jsonMap) {
     return Exercise(
       type: jsonMap['type'],
       sets: jsonMap['sets'],
       reps: jsonMap['reps'],
       seconds: Duration(seconds: jsonMap['seconds']),
     );
+  }
+
+  static List<Exercise> fromJsonList(String jsonStr) {
+    List<dynamic> jsonList = jsonDecode(jsonStr) ?? '';
+    List<Exercise> exercises = [];
+    for (var jsonObj in jsonList) {
+      jsonObj = jsonDecode(jsonObj);
+      Exercise exercise = Exercise(type: jsonObj['type'], sets: jsonObj['sets'], reps: jsonObj['reps'], seconds: Duration(seconds: jsonObj['seconds']));
+      exercises.add(exercise);
+    }
+    return exercises;
   }
 }

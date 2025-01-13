@@ -13,20 +13,35 @@ class HomeScreen extends StatefulWidget {
 class HomeScreenState extends State<HomeScreen> {
   final _formKey = GlobalKey<FormState>();
   final _playerNameController = TextEditingController();
+  String? _playerName;
+  bool _saveName = false;
 
   @override
   void initState() {
     super.initState();
     _loadSavedData();
-    Future.delayed(Duration(seconds: 2), () {
+    Future.delayed(Duration(seconds: 0), () {
       _showDisclaimerDialog();
     });
   }
 
   Future<void> _loadSavedData() async {
     final prefs = await SharedPreferences.getInstance();
-    if (prefs.getBool('saveNameAndRole') ?? false) {
-      _playerNameController.text = prefs.getString('savedName') ?? '';
+    _saveName = prefs.getBool('saveNameAndRole') ?? false;
+    if (_saveName) {
+      setState(() {
+        _playerName = prefs.getString('savedName') ?? '';
+        if (_playerName != null) {
+          _playerNameController.text = _playerName!;
+        }
+      });
+    }
+  }
+
+  Future<void> _savePlayerName(String name) async {
+    if (_saveName) {
+      final prefs = await SharedPreferences.getInstance();
+      await prefs.setString('savedName', name);
     }
   }
 
@@ -81,7 +96,7 @@ class HomeScreenState extends State<HomeScreen> {
         ),
         child: Center(
           child: ConstrainedBox(
-            constraints: const BoxConstraints(maxWidth: 375, maxHeight: 200),
+            constraints: const BoxConstraints(maxWidth: 375, maxHeight: 250),
             child: Container(
               decoration: BoxDecoration(
                     color: Theme.of(context).colorScheme.surface.withAlpha((0.8 * 255).toInt()),
@@ -102,17 +117,23 @@ class HomeScreenState extends State<HomeScreen> {
                         'Summoners Lift!',
                         style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
                       ),
-                      ConstrainedBox(
-                        constraints: BoxConstraints(maxWidth: 200),
-                        child: TextFormField(
-                          controller: _playerNameController,
-                          decoration: InputDecoration(labelText: 'Player Name'),
-                          validator: (value) {
-                            if (value == null || value.isEmpty) {
-                              return 'Please enter player name';
-                            }
-                            return null;
-                          },
+                      Padding(
+                        padding: const EdgeInsets.only(top: 12.0),
+                        child: ConstrainedBox(
+                          constraints: BoxConstraints(maxWidth: 200),
+                          child: TextFormField(
+                            controller: _playerNameController,
+                            decoration: InputDecoration(
+                              labelText: 'Player Name',
+                              border: OutlineInputBorder(),
+                            ),
+                            validator: (value) {
+                              if (value == null || value.isEmpty) {
+                                return 'Please enter player name';
+                              }
+                              return null;
+                            },
+                          ),
                         ),
                       ),
                       SizedBox(height: 20),
@@ -123,10 +144,23 @@ class HomeScreenState extends State<HomeScreen> {
                             padding: const EdgeInsets.symmetric(horizontal: 8.0),
                             child: ElevatedButton(
                               onPressed: () {
-                                Navigator.push(
-                                  context,
-                                  MaterialPageRoute(builder: (context) => PostMatchStatsForm()),
-                                );
+                                final playerName = _playerNameController.text.trim();
+                                if (playerName.isNotEmpty) {
+                                  _savePlayerName(playerName);
+                                  setState(() {
+                                    _playerName = playerName;
+                                  });
+                                  Navigator.push(
+                                    context, 
+                                    MaterialPageRoute(
+                                      builder: (context) => PostMatchStatsForm()
+                                    )
+                                  );
+                                } else {
+                                  ScaffoldMessenger.of(context).showSnackBar(
+                                    const SnackBar(content: Text('Please enter your name first.'))
+                                  );
+                                }
                               },
                               style: ElevatedButton.styleFrom(
                                 padding: EdgeInsets.symmetric(horizontal: 30, vertical: 15),
@@ -141,12 +175,23 @@ class HomeScreenState extends State<HomeScreen> {
                             padding: const EdgeInsets.symmetric(horizontal: 8.0),
                             child: ElevatedButton(
                               onPressed: () {
-                                Navigator.push(
-                                  context, 
-                                  MaterialPageRoute(
-                                    builder: (context) => WorkoutStatView()
-                                  )
-                                );
+                                final playerName = _playerNameController.text.trim();
+                                if (playerName.isNotEmpty) {
+                                  _savePlayerName(playerName);
+                                  setState(() {
+                                    _playerName = playerName;
+                                  });
+                                  Navigator.push(
+                                    context, 
+                                    MaterialPageRoute(
+                                      builder: (context) => WorkoutStatView()
+                                    )
+                                  );
+                                } else {
+                                  ScaffoldMessenger.of(context).showSnackBar(
+                                    const SnackBar(content: Text('Please enter your name first.'))
+                                  );
+                                }
                               },
                               style: ElevatedButton.styleFrom(
                                 padding: EdgeInsets.symmetric(horizontal: 30, vertical: 15),
