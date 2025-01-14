@@ -46,7 +46,8 @@ class DatabaseHelper {
       CREATE TABLE Workouts (
         id INTEGER PRIMARY KEY AUTOINCREMENT,
         name TEXT NOT NULL,
-        exercise TEXT NOT NULL
+        exercise TEXT NOT NULL,
+        submitDate TEXT DEFAULT CURRENT_TIMESTAMP
       )
     ''');
   }
@@ -73,7 +74,7 @@ class DatabaseHelper {
     return result.map((e) => Workout.fromMap(e)).toList();
   }
 
-  Future<List<Workout>> getWorkout(name) async {
+  Future<List<Workout>> getAllWorkoutsForPlayer(name) async {
     final db = await instance.database;
     final result = await db.query(
       'Workouts',

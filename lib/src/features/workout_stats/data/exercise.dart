@@ -22,12 +22,13 @@ class Exercise {
     });
   }
 
-  factory Exercise.fromJson(Map<String, dynamic> jsonMap) {
+  static Exercise fromJson(dynamic jsonStr) {
+    jsonStr = jsonDecode(jsonStr);
     return Exercise(
-      type: jsonMap['type'],
-      sets: jsonMap['sets'],
-      reps: jsonMap['reps'],
-      seconds: Duration(seconds: jsonMap['seconds']),
+      type: jsonStr['type'], 
+      sets: jsonStr['sets'], 
+      reps: jsonStr['reps'], 
+      seconds: Duration(seconds: jsonStr['seconds']),
     );
   }
 

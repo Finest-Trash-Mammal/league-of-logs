@@ -71,9 +71,9 @@ class WorkoutGeneratorService {
         exercises.add(exercise.toJson());
       }
       
-      Workout workoutJson = Workout(name: playerStats.name, exercise: jsonEncode(exercises));
+      Workout newWorkout = Workout(name: playerStats.name, exercise: jsonEncode(exercises), submitDate: DateTime.now());
       
-      await _saveStatsAndWorkoutToDatabase(workoutJson, playerStats);
+      await _saveStatsAndWorkoutToDatabase(newWorkout, playerStats);
     } on Exception catch (e) {
       print(e);
     }

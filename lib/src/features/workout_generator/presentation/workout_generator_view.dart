@@ -43,8 +43,6 @@ class PostMatchStatsFormState extends State<PostMatchStatsForm> {
         _name = prefs.getString('savedName') ?? '';
       });
     }
-    print(prefs.getString('savedName'));
-    print(_name);
 
     final playerStats = PlayerStats(
       id: null,
